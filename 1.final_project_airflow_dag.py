@@ -55,7 +55,7 @@ with DAG(
             port=6432
             dbname=stg
             user=user1
-            password=Galateya_224
+            password=put_your_password
             target_session_attrs=read-write
             """))
         cursor = connection.cursor()
