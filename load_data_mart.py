@@ -20,7 +20,7 @@ def main():
     # задаем адрес БД и аутентификационные данные
     url_dds = ("jdbc:postgresql://c-c9q7fedn3itbd408mpmm.rw.mdb.yandexcloud.net:6432/dds?targetServerType=master&ssl=false")
     user_dds = "user1"
-    password_dds = "Galateya_224"
+    password_dds = "put_password_here"
 
     url_data_mart = ("jdbc:postgresql://c-c9q7fedn3itbd408mpmm.rw.mdb.yandexcloud.net:6432/data_mart?targetServerType=master&ssl=false")
     user_data_mart = "user1"
@@ -46,7 +46,7 @@ def main():
     #ЗОНА РАСЧЕТА ВИТРИН:
 
     #******************************
-    # Строим витрину с агрегатом литературных призов в групировке по регионам, городам
+    # Строим витрину с агрегатом литературных призов в группировке по регионам, городам
     qnt_lit_prize_in_city = full_data.select("region","city","lit_prize_name").groupBy("region","city","lit_prize_name").count().alias("qnt_lit_prize_in_city")
     # записываем витрину в БД
     qnt_lit_prize_in_city.write.format("jdbc").option("url", url_data_mart).option("dbtable", "qnt_lit_prize_in_city").option("user", user_data_mart).option("password", password_data_mart).mode("overwrite").save()
